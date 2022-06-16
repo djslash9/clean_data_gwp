@@ -9,16 +9,12 @@ def convert_df_to_csv(df):
     return df.to_csv().encode('utf-8')
 
 def main():
-    st.subheader("Upload the GWP file Excel")
+    st.subheader("Upload the GWP file csv")
     updated_file = st.file_uploader("Choose a file")
     if updated_file is not None:
-        #df_raw = pd.read_csv(updated_file)
-        df1 = pd.read_excel(updated_file)
+        df_raw = pd.read_csv(updated_file)
          #Get overview of data
-        st.write(df1.head()) 
-        
-        df1.to_csv ('converted.csv', index = None, header=True)
-        df_raw = pd.DataFrame(pd.read_csv('converted.csv'))
+        st.write(df_raw.head()) 
     
         df_map = pd.read_csv('bcm.csv')
 

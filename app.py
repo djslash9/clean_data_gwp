@@ -51,12 +51,13 @@ def main():
         
         # st.write(df_maped.head()) 
         st.subheader("Download the cleaned file csv")
+        st.write("Record count:", len(df_maped. index))
         st.download_button(
             label="Download data as CSV",
             data=convert_df_to_csv(df_maped),
             file_name='GWP_cleaned.csv',
             mime='text/csv',
-            )       
+            )     
         
         # st.write(df_maped.head()) 
         
@@ -64,6 +65,7 @@ def main():
         dup_cols_nic = ['POLICY NUMBER', 'NIC Number']
         df_nic_dup = df_nic[dup_cols_nic]
         st.subheader("Download duplicated NIC csv")
+        st.write("Record count:", len(df_nic_dup. index))
         st.download_button(
             label="Download data as CSV",
             data=convert_df_to_csv(df_nic_dup),
@@ -76,6 +78,7 @@ def main():
         dup_cols_names = ['POLICY NUMBER', 'NAME OF INSURED']
         df_name_dup = df_name[dup_cols_names]
         st.subheader("Download duplicated names csv")
+        st.write("Record count:", len(df_name_dup. index))
         st.download_button(
             label="Download data as CSV",
             data=convert_df_to_csv(df_name_dup),
@@ -88,6 +91,7 @@ def main():
         dup_cols_vhcl = ['POLICY NUMBER', 'VEHICLE NUMBER']
         df_vhcl_dup = df_vhcl[dup_cols_vhcl]
         st.subheader("Download duplicated vehicles csv")
+        st.write("Record count:", len(df_vhcl_dup. index))
         st.download_button(
             label="Download data as CSV",
             data=convert_df_to_csv(df_vhcl_dup),

@@ -62,7 +62,7 @@ def main():
         # st.write(df_maped.head()) 
         
         df_nic = df_maped[df_maped.duplicated(['NIC Number'], keep=False)].sort_values(by='NIC Number')
-        dup_cols_nic = ['POLICY NUMBER', 'NIC Number']
+        dup_cols_nic = ['NIC Number', 'NAME OF INSURED', 'VEHICLE NUMBER', 'POLICY NUMBER', 'POLICY STATUS', 'TRANSACTION TYPE']
         df_nic_dup = df_nic[dup_cols_nic]
         st.subheader("Download duplicated NIC csv")
         st.write("Record count:", len(df_nic_dup. index))
@@ -75,7 +75,7 @@ def main():
         
         # st.write(df_maped.head()) 
         df_name = df_maped[df_maped.duplicated(['NAME OF INSURED'], keep=False)].sort_values(by='NAME OF INSURED')
-        dup_cols_names = ['POLICY NUMBER', 'NAME OF INSURED']
+        dup_cols_names = ['NAME OF INSURED', 'NIC Number', 'VEHICLE NUMBER', 'POLICY NUMBER', 'POLICY STATUS', 'TRANSACTION TYPE']
         df_name_dup = df_name[dup_cols_names]
         st.subheader("Download duplicated names csv")
         st.write("Record count:", len(df_name_dup. index))
@@ -88,10 +88,12 @@ def main():
         
         # st.write(df_maped.head()) 
         df_vhcl = df_maped[df_maped.duplicated(['VEHICLE NUMBER'], keep=False)].sort_values(by='VEHICLE NUMBER')
-        dup_cols_vhcl = ['POLICY NUMBER', 'VEHICLE NUMBER']
+        dup_cols_vhcl = ['VEHICLE NUMBER', 'POLICY NUMBER', 'POLICY STATUS', 'TRANSACTION TYPE', 'NAME OF INSURED', 'NIC Number']
         df_vhcl_dup = df_vhcl[dup_cols_vhcl]
         st.subheader("Download duplicated vehicles csv")
         st.write("Record count:", len(df_vhcl_dup. index))
+        # df_vhcl_dup.groupby(['POLICY NUMBER'])['VEHICLE NUMBER'].count()
+        # st.write(df_vhcl_dup.duplicated().sum())
         st.download_button(
             label="Download data as CSV",
             data=convert_df_to_csv(df_vhcl_dup),
